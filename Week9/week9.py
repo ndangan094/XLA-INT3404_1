@@ -6,16 +6,16 @@ for i in range(1,4):
     path = "./input/" + str(i) + ".jpg"
     img = cv2.imread(path)
 
-    #convert img to gray
+    # convert img to gray
 
     grayImg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
-    #load cascade and detect faces
+    # load cascade and detect faces
 
     faceCascade = cv2.CascadeClassifier(cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
     faces = faceCascade.detectMultiScale(grayImg,scaleFactor=1.3,minNeighbors=3,minSize=(30,30))
 
-    #faces area
+    # faces area
     mask = np.zeros(img.shape, np.uint8)
     for (x,y,w,h) in faces:
         mask[y:y+h, x:x+w] = img[y:y+h, x:x+w]
